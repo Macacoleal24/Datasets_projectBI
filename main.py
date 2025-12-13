@@ -170,22 +170,26 @@ with tab2:
     
     st.plotly_chart(fig, use_container_width=True)
     # ---------------}
-    df_clean = df.dropna(subset=["energy", "artist_popularity"])
+    cols_needed = ["energy", "artist_popularity"]
+    cols_exist = [c for c in cols_needed if c in df.columns]
+    
+    missing = set(cols_needed) - set(cols_exist)
+    if missing:
+        st.error(f"Las siguientes columnas no existen en el dataset: {missing}")
+    else:
+        df_clean = df.dropna(subset=cols_exist)
+    
+        fig, ax = plt.subplots(figsize=(10, 6))
+        sns.scatterplot(
+            data=df_clean,
+            x=cols_exist[0],
+            y=cols_exist[1],
+            color="red",
+            ax=ax
+        )
+    
+        st.pyplot(fig)
 
-    fig, ax = plt.subplots(figsize=(10, 6))
-    sns.scatterplot(
-        data=df_clean,
-        x="energy",
-        y="artist_popularity",
-        color="red",
-        ax=ax
-    )
-    
-    ax.set_title("Artist Popularity vs Energy")
-    ax.set_xlabel("Energy")
-    ax.set_ylabel("Artist Popularity")
-    
-    st.pyplot(fig)
         
 
 
