@@ -4,11 +4,7 @@ import numpy as np
 import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.cluster import (
-    KMeans, AffinityPropagation, MeanShift, SpectralClustering,
-    AgglomerativeClustering, DBSCAN, OPTICS, Birch
-)
-import hdbscan
+from sklearn.cluster import (KMeans,  DBSCAN)
 
 
 st.set_page_config(
