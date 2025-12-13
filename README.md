@@ -50,7 +50,7 @@ Espera
      - Comparaciones por género
 
 ## Software usado
-* **Python** 3 Lenguaje de programación
+* **Python V.3** Lenguaje de programación
 * **Pandas** Libreria para manipulación de datos
 * **NumPy**
 * **Scikit-learn** Desarrollo de ML
