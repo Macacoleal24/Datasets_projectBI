@@ -4,18 +4,11 @@ import numpy as np
 import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import StandardScaler
-from sklearn.decomposition import PCA
-from sklearn.cluster import KMeans
-from sklearn.cluster import AffinityPropagation
-from sklearn.cluster import MeanShift
-from sklearn.cluster import SpectralClustering
-from sklearn.cluster import AgglomerativeClustering
-from sklearn.cluster import DBSCAN
+from sklearn.cluster import (
+    KMeans, AffinityPropagation, MeanShift, SpectralClustering,
+    AgglomerativeClustering, DBSCAN, OPTICS, Birch
+)
 import hdbscan
-from sklearn.cluster import OPTICS
-from sklearn.cluster import Birch
-from sklearn.metrics import silhouette_score
 
 
 st.set_page_config(
@@ -289,8 +282,66 @@ with tab2:
 
 with tab3:
      st.subheader("Modelos de Machine Learning utilizados")
+
+    features = df.select_dtypes(include=["int64", "float64"])
+    scaler = StandardScaler()
+    scaled_data = scaler.fit_transform(features)
+
+    pca = PCA(n_components=2)
+    pca_data = pca.fit_transform(scaled_data)
+
+    df_pca = pd.DataFrame(pca_data, columns=["PC1", "PC2"])
+
+    opciones_modelos = [
+        "KMeans",
+        "MeanShift",
+        "AffinityPropagation",
+        "SpectralClustering",
+        "AgglomerativeClustering",
+        "DBSCAN",
+        "OPTICS",
+        "Birch",
+        "HDBSCAN"
+    ]
     
+    modelo_seleccionado = st.selectbox("Selecciona un algoritmo de clustering", opciones_modelos)
+
+    def crear_modelo(nombre):
+    if nombre == "KMeans":
+        return KMeans(n_clusters=7, random_state=42)
+    if nombre == "MeanShift":
+        return MeanShift()
+    if nombre == "AffinityPropagation":
+        return AffinityPropagation()
+    if nombre == "SpectralClustering":
+        return SpectralClustering(n_clusters=7)
+    if nombre == "AgglomerativeClustering":
+        return AgglomerativeClustering(n_clusters=7)
+    if nombre == "DBSCAN":
+        return DBSCAN(eps=0.5, min_samples=10)
+    if nombre == "OPTICS":
+        return OPTICS()
+    if nombre == "Birch":
+        return Birch(n_clusters=7)
+    if nombre == "HDBSCAN":
+        return hdbscan.HDBSCAN()
+
+    modelo = crear_modelo(modelo_seleccionado)
     
+    clusters = modelo.fit_predict(pca_data)
+    df_pca["cluster"] = clusters
+
+    fig = px.scatter(
+    df_pca,
+    x="PC1",
+    y="PC2",
+    color="cluster",
+    title=f"Clusters usando {modelo_seleccionado}",
+    color_continuous_scale="Viridis",
+    opacity=0.8
+    )
+    
+    st.plotly_chart(fig, use_container_width=True)
 
 
 
