@@ -95,9 +95,11 @@ Espera
 
 with  tab2:
     st.subheader("EDA(Exploratory Data Analysis)")
-    st.markdown("""#Datos""")
+    st.markdown("""Dataset crudo para realizar insights""")
     st.dataframe(df)
-    
+    df.info()
+    df.describe()
+
 
 
 
