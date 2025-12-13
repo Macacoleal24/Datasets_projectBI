@@ -40,39 +40,37 @@ with  tab1:
 
 Este repositorio contiene el desarrollo de un streamlit interactivo orientado al análisis de tendencias musicales utilizando temas vistos durante el curso.
 
-* Objetivo del proyecyto
+## Objetivo del proyecto
 El objetivo es aplicar técnicas de análisis de datos y visualización para identificar patrones relevantes en:
 * Popularidad de canciones
 * Popularidad y seguidores de artistas
 * Géneros más publicados por año
-* Comportamientos por mes
 * Clustering no supervisado para segmentación
 
-El proyecto integra limpieza de datos y visualizaciones diseñadas para generar insights accionables para el analisis de datos de Inteligencia de Negocios.
+El proyecto integra limpieza de datos y visualizaciones diseñadas para generar insights accionables para el analisis de datos.
 
 ## Preparación y Limpieza de Datos
 Las principales tareas de preprocesamiento incluyeron:
 * Codificación y normalización para modelos de Machine Learning
-*
+* Correlacion de columnas numéricas
 
 ## Modelos de Machine Learning (Aprendizaje No Supervisado)
-Se utilizaron diferentes algoritmos de clustering para ver que modelo de ML:
-
+Se utilizaron diferentes algoritmos de clustering y visualización para ver que modelo de ML:
 * K-Means
 * DBSCAN
+* PCA
 
 ## Visualizaciones Incluidas
-Espera
-
 * Exploración general
-* Analisis de la frecuencia con genero
+* Analisis de la frecuencia por genero
 * Comparaciones entre generos
 * Distribuciones
 * Correlaciones
 * Clusterización
+* Reducción de dimensiones
 
 ## Software usado
-* **Python V.3** Lenguaje de programación
+* **Python V.3.12**
 * **Pandas**
 * **NumPy**
 * **Scikit-learn**
@@ -85,6 +83,7 @@ Espera
 1. app.py
 2. requirements.txt
 3. README.txt
+4. final_dataset_V4.csv
 
 ## Dataset utilizado
 [Dataset utilizado para el proyecto](https://www.kaggle.com/datasets/zinasakr/40k-songs-with-audio-features-and-lyrics) **Autor: Zina Sakr**""")
