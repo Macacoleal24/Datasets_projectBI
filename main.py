@@ -281,14 +281,17 @@ with tab2:
     st.pyplot(fig)
 
 with tab3:
-     st.subheader("Modelos de Machine Learning utilizados")
+     def run_clustering(df):
 
     features = df.select_dtypes(include=["int64", "float64"])
+
     scaler = StandardScaler()
     scaled_data = scaler.fit_transform(features)
 
     pca = PCA(n_components=2)
     pca_data = pca.fit_transform(scaled_data)
+
+    return pca_data
 
     df_pca = pd.DataFrame(pca_data, columns=["PC1", "PC2"])
 
