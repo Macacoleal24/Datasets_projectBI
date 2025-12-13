@@ -59,37 +59,30 @@ Las principales tareas de preprocesamiento incluyeron:
 *
 
 ## Modelos de Machine Learning (Aprendizaje No Supervisado)
-Se utilizaron diferentes algoritmos de clustering para ver que modelo de ML era el mejor para nuetros datos:
+Se utilizaron diferentes algoritmos de clustering para ver que modelo de ML:
 
 * K-Means
-* MeanShift
-* Affinity Propagation
 * DBSCAN
-* HDBSCAN
-* OPTICS
-* BIRCH
-* Agglomerative Clustering
-* Spectral Clustering
-
-Evaluandolos por medio de **Silhouette Score** y **Visualización en 2D mediante PCA** para poder determinar cual era el optimo.
 
 ## Visualizaciones Incluidas
 Espera
 
-3. Exploración general
-     - Distribuciones
-     - Correlaciones
-     - Comparaciones por género
+* Exploración general
+* Analisis de la frecuencia con genero
+* Comparaciones entre generos
+* Distribuciones
+* Correlaciones
+* Clusterización
 
 ## Software usado
 * **Python V.3** Lenguaje de programación
-* **Pandas** Libreria para manipulación de datos
+* **Pandas**
 * **NumPy**
-* **Scikit-learn** Desarrollo de ML
-* **HDBSCAN** Analisis de datos
-* **Seaborn** Matplotlib Visualización de datos
-* **Jupyter** Notebook Desarrollo de proyecto
-* **Plotly** Visualización interactiva
+* **Scikit-learn**
+* **HDBSCAN**
+* **Seaborn**
+* **Jupyter**
+* **Plotly**
 
 ## Estructura del proyecto
 1. app.py
