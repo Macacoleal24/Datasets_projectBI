@@ -1,7 +1,6 @@
 import streamlit as st
 
-st.markdown(""
-<img src="https://posgrados-panamericana.up.edu.mx/hs-fs/hubfs/logo%20posgrados%20con%20espacio.png?width=343&name=logo%20posgrados%20con%20espacio.png" width="100" >
+st.markdown("<img src="https://posgrados-panamericana.up.edu.mx/hs-fs/hubfs/logo%20posgrados%20con%20espacio.png?width=343&name=logo%20posgrados%20con%20espacio.png" width="100" >
 
 # Tablero Interactivo de Análisis de Música
 
@@ -71,4 +70,4 @@ Espera
 [Dataset utilizado para el proyecto](https://www.kaggle.com/datasets/zinasakr/40k-songs-with-audio-features-and-lyrics) **Autor: Zina Sakr**
 
 
-"")
+")
