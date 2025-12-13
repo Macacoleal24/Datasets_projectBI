@@ -101,24 +101,12 @@ with tab2:
     st.metric("Número de columnas", df.shape[1])
 
     columnas = st.multiselect("Selecciona columnas para el pairplot", df.columns)
-
-    columnas_validas = []
-    for col in columnas:
-        if pd.api.types.is_numeric_dtype(df[col]):
-            columnas_validas.append(col)
-
-    if len(columnas_validas) > 1:
-        fig = px.scatter_matrix(
-            df[columnas_validas],
-            dimensions=columnas_validas,
-            title="Pairplot con Plotly",
-            opacity=0.7
-        )
-        st.plotly_chart(fig, use_container_width=True)
+    if len(columnas) > 1:
+    fig = sns.pairplot(df[columnas])
+    st.pyplot(fig)
     else:
-        st.info("Selecciona al menos dos columnas numéricas.")
+    st.info("Selecciona al menos dos columnas.")
 
-    
     st.markdown("""# Columnas usadas para el analisis de los datos:
     * energy
     * valence
