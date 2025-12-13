@@ -230,6 +230,31 @@ with tab2:
     )
     
     st.plotly_chart(fig, use_container_width=True)
+    #---------------------
+    artist_summary = df.groupby("artist_name").agg(
+        songs_count=("song_name", "count"),
+        avg_popularity=("artist_popularity", "mean")
+    ).sort_values("songs_count", ascending=False).head(15)
+    
+    fig = px.scatter(
+        artist_summary.reset_index(),
+        x="songs_count",
+        y="avg_popularity",
+        color="artist_name",
+        size="avg_popularity",
+        hover_name="artist_name",
+        title="Song Count vs Avg Artist Popularity",
+    )
+    
+    fig.update_layout(
+        xaxis_title="Song Count",
+        yaxis_title="Avg Artist Popularity",
+        legend_title="Artist",
+    )
+    
+    fig.update_traces(marker=dict(opacity=0.8, line=dict(width=1, color="black")))
+    
+    st.plotly_chart(fig, use_container_width=True)
             
 
 
