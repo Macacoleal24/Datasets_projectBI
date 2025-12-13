@@ -169,6 +169,24 @@ with tab2:
     )
     
     st.plotly_chart(fig, use_container_width=True)
+    # ---------------}
+    fig = px.scatter(
+    df,
+    x="energy",
+    y="artist_popularity",
+    title="Artist Popularity vs Energy",
+    color_discrete_sequence=["red"],
+    opacity=0.7
+    )
+    
+    fig.update_layout(
+        xaxis_title="Energy",
+        yaxis_title="Artist Popularity",
+        height=600
+    )
+    
+    st.plotly_chart(fig, use_container_width=True)
+        
 
 
 
