@@ -107,7 +107,8 @@ with tab2:
     else:
         st.info("Selecciona al menos dos columnas numericos.")
 
-    st.markdown("""# Columnas usadas para el analisis de los datos
+    st.markdown("""
+    ## Columnas usadas para el analisis de los datos
     * Variables numéricas relevantes: 
         - artist_popularity
         - acousticness
