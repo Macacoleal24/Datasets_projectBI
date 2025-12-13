@@ -175,13 +175,13 @@ with tab2:
     
     st.plotly_chart(fig, use_container_width=True)
     # ---------------}
-    df_clean = df.dropna(subset=["energy", "new_artist_popularity"])
+    df_clean = df.dropna(subset=["energy", "artist_popularity"])
 
     fig, ax = plt.subplots(figsize=(10, 6))
     sns.scatterplot(
         data=df_clean,
         x="energy",
-        y="new_artist_popularity",
+        y="artist_popularity",
         color="red",
         ax=ax
     )
