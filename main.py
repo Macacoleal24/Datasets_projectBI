@@ -152,6 +152,24 @@ with tab2:
     
     st.plotly_chart(fig, use_container_width=True)
 
+    # ---------------
+    fig = px.histogram(
+    df,
+    x="duration_ms",
+    nbins=100,
+    title="Distribución de Duración de Canciones (ms)",
+    color_discrete_sequence=["#4c78a8"]
+    )
+    
+    fig.update_layout(
+        xaxis_title="Duration (ms)",
+        yaxis_title="Count",
+        bargap=0.1,
+        height=500
+    )
+    
+    st.plotly_chart(fig, use_container_width=True)
+
 
 
 
