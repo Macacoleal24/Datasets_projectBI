@@ -4,6 +4,19 @@ import numpy as np
 import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+from sklearn.cluster import AffinityPropagation
+from sklearn.cluster import MeanShift
+from sklearn.cluster import SpectralClustering
+from sklearn.cluster import AgglomerativeClustering
+from sklearn.cluster import DBSCAN
+import hdbscan
+from sklearn.cluster import OPTICS
+from sklearn.cluster import Birch
+from sklearn.metrics import silhouette_score
+
 
 st.set_page_config(
     page_title="Spotify Dashboard Analysis",
