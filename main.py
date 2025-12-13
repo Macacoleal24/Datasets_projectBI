@@ -273,7 +273,10 @@ with tab2:
     )
     
     st.pyplot(fig)
-    #---------
+
+with tab3:
+     st.subheader("Modelos de Machine Learning utilizados")
+    
     
 
 
