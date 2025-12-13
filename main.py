@@ -324,12 +324,9 @@ with tab3:
         # 3. Visualización y Resultados
         with col_plot:
             if labels is not None:
-                # Añadimos los clusters al dataframe original para visualizar
                 df_viz = df.copy()
-                df_viz['Cluster'] = labels.astype(str) # Convertir a string para que plotly use colores discretos
+                df_viz['Cluster'] = labels.astype(str)
 
-                # Reducción de dimensionalidad con PCA para graficar en 2D
-                # (Ya que tenemos muchas variables, las "aplastamos" a 2 dimensiones para verlas)
                 pca = PCA(n_components=2)
                 components = pca.fit_transform(X_scaled)
                 
@@ -338,7 +335,6 @@ with tab3:
 
                 st.success(f"Modelo ejecutado. Clusters encontrados: {len(set(labels))}")
 
-                # Gráfico de dispersión
                 fig_cluster = px.scatter(
                     df_viz, 
                     x='PCA1', 
@@ -350,7 +346,6 @@ with tab3:
                 )
                 st.plotly_chart(fig_cluster, use_container_width=True)
                 
-                # Explicación breve si sale DBSCAN con ruido
                 if algorithm == "DBSCAN" and "-1" in df_viz['Cluster'].values:
                     st.info("Nota: En DBSCAN, el cluster '-1' representa 'Ruido' (puntos que no encajan en ningún grupo denso).")
 
