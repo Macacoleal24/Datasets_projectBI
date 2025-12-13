@@ -172,7 +172,7 @@ with tab2:
     # ---------------}
     cols = ["energy", "new_artist_popularity"]
     df_clean = df.dropna(subset=cols)
-    df_clean = df_clean.astype({"energy": float, "artist_popularity": float})
+    df_clean = df_clean.astype({"energy": float, "new_artist_popularity": float})
     
     fig = px.scatter(
         df_clean,
