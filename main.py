@@ -4,7 +4,9 @@ import numpy as np
 import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.cluster import (KMeans,  DBSCAN)
+from sklearn.cluster import KMeans, DBSCAN
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 
 st.set_page_config(
     page_title="Spotify Dashboard Analysis",
