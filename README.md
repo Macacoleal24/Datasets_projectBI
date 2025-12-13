@@ -45,9 +45,9 @@ Evaluandolos por medio de **Silhouette Score** y **Visualización en 2D mediante
 Espera
 
 3. Exploración general
-   -Distribuciones
-   -Correlaciones
-   -Comparaciones por género
+     - Distribuciones
+     - Correlaciones
+     - Comparaciones por género
 
 ## Software usado
 * **Python** 3 Lenguaje de programación
