@@ -281,18 +281,17 @@ with tab2:
     st.pyplot(fig)
 
 with tab3:
-     def run_clustering(df):
+    def run_clustering(df):
+        features = df.select_dtypes(include=["int64", "float64"])
+        scaler = StandardScaler()
+        scaled_data = scaler.fit_transform(features)
 
-    features = df.select_dtypes(include=["int64", "float64"])
+        pca = PCA(n_components=2)
+        pca_data = pca.fit_transform(scaled_data)
 
-    scaler = StandardScaler()
-    scaled_data = scaler.fit_transform(features)
+        return pca_data
 
-    pca = PCA(n_components=2)
-    pca_data = pca.fit_transform(scaled_data)
-
-    return pca_data
-
+    pca_data = run_clustering(df)
     df_pca = pd.DataFrame(pca_data, columns=["PC1", "PC2"])
 
     opciones_modelos = [
@@ -310,40 +309,41 @@ with tab3:
     modelo_seleccionado = st.selectbox("Selecciona un algoritmo de clustering", opciones_modelos)
 
     def crear_modelo(nombre):
-    if nombre == "KMeans":
-        return KMeans(n_clusters=7, random_state=42)
-    if nombre == "MeanShift":
-        return MeanShift()
-    if nombre == "AffinityPropagation":
-        return AffinityPropagation()
-    if nombre == "SpectralClustering":
-        return SpectralClustering(n_clusters=7)
-    if nombre == "AgglomerativeClustering":
-        return AgglomerativeClustering(n_clusters=7)
-    if nombre == "DBSCAN":
-        return DBSCAN(eps=0.5, min_samples=10)
-    if nombre == "OPTICS":
-        return OPTICS()
-    if nombre == "Birch":
-        return Birch(n_clusters=7)
-    if nombre == "HDBSCAN":
-        return hdbscan.HDBSCAN()
+        if nombre == "KMeans":
+            return KMeans(n_clusters=7, random_state=42)
+        if nombre == "MeanShift":
+            return MeanShift()
+        if nombre == "AffinityPropagation":
+            return AffinityPropagation()
+        if nombre == "SpectralClustering":
+            return SpectralClustering(n_clusters=7)
+        if nombre == "AgglomerativeClustering":
+            return AgglomerativeClustering(n_clusters=7)
+        if nombre == "DBSCAN":
+            return DBSCAN(eps=0.5, min_samples=10)
+        if nombre == "OPTICS":
+            return OPTICS()
+        if nombre == "Birch":
+            return Birch(n_clusters=7)
+        if nombre == "HDBSCAN":
+            return hdbscan.HDBSCAN()
 
     modelo = crear_modelo(modelo_seleccionado)
+
     
     clusters = modelo.fit_predict(pca_data)
     df_pca["cluster"] = clusters
 
     fig = px.scatter(
-    df_pca,
-    x="PC1",
-    y="PC2",
-    color="cluster",
-    title=f"Clusters usando {modelo_seleccionado}",
-    color_continuous_scale="Viridis",
-    opacity=0.8
+        df_pca,
+        x="PC1",
+        y="PC2",
+        color="cluster",
+        title=f"Clusters usando {modelo_seleccionado}",
+        color_continuous_scale="Viridis",
+        opacity=0.8
     )
-    
+
     st.plotly_chart(fig, use_container_width=True)
 
 
