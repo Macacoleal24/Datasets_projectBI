@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.write("<img src="https://posgrados-panamericana.up.edu.mx/hs-fs/hubfs/logo%20posgrados%20con%20espacio.png?width=343&name=logo%20posgrados%20con%20espacio.png" width="100" >
+st.markdown("<img src="https://posgrados-panamericana.up.edu.mx/hs-fs/hubfs/logo%20posgrados%20con%20espacio.png?width=343&name=logo%20posgrados%20con%20espacio.png" width="100" >
 
 # Tablero Interactivo de Análisis de Música
 
