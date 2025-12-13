@@ -20,7 +20,11 @@ def load_data():
 
 df = load_data()
 
-st.markdown("""<img src="https://posgrados-panamericana.up.edu.mx/hs-fs/hubfs/logo%20posgrados%20con%20espacio.png?width=343&name=logo%20posgrados%20con%20espacio.png" width="150" >
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["Documentación General","EDA","Metodología", "Modelo de ML", "Conclusión"])
+
+with  tab1:
+    st.subheader("Documentación General del proyecto")
+    st.markdown("""<img src="https://posgrados-panamericana.up.edu.mx/hs-fs/hubfs/logo%20posgrados%20con%20espacio.png?width=343&name=logo%20posgrados%20con%20espacio.png" width="150" >
 
 # Tablero Interactivo de Análisis de Música
 
@@ -88,3 +92,16 @@ Espera
 
 ## Dataset utilizado
 [Dataset utilizado para el proyecto](https://www.kaggle.com/datasets/zinasakr/40k-songs-with-audio-features-and-lyrics) **Autor: Zina Sakr**""")
+
+with  tab1:
+    st.subheader("EDA(Exploratory Data Analysis)")
+    
+
+
+
+
+
+
+
+
+
