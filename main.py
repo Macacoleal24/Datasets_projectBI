@@ -170,22 +170,22 @@ with tab2:
     
     st.plotly_chart(fig, use_container_width=True)
     # ---------------}
-    fig = px.scatter(
-    df,
-    x="energy",
-    y="artist_popularity",
-    title="Artist Popularity vs Energy",
-    color_discrete_sequence=["red"],
-    opacity=0.7
+    df_clean = df.dropna(subset=["energy", "artist_popularity"])
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.scatterplot(
+        data=df_clean,
+        x="energy",
+        y="artist_popularity",
+        color="red",
+        ax=ax
     )
     
-    fig.update_layout(
-        xaxis_title="Energy",
-        yaxis_title="Artist Popularity",
-        height=600
-    )
+    ax.set_title("Artist Popularity vs Energy")
+    ax.set_xlabel("Energy")
+    ax.set_ylabel("Artist Popularity")
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.pyplot(fig)
         
 
 
