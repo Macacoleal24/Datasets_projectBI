@@ -97,7 +97,17 @@ with  tab2:
     st.dataframe(df)
     st.metric("Número de filas", df.shape[0])
     st.metric("Número de columnas", df.shape[1])
-
+    st.title("Pairplot del Dataset")
+    numericas = df.select_dtypes(include=["int64", "float64"])
+    fig = sns.pairplot(numericas)
+    st.pyplot(fig)
+    
+    st.markdown("""# Columnas usadas para el analisis de los datos:
+    * energy
+    * valence
+    * danceability
+    * loudness
+    """)
 
 
 
