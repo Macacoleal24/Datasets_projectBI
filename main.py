@@ -255,7 +255,25 @@ with tab2:
     fig.update_traces(marker=dict(opacity=0.8, line=dict(width=1, color="black")))
     
     st.plotly_chart(fig, use_container_width=True)
-            
+    #------------------
+    features = df.select_dtypes(include=["int64", "float64"])
+    cor = features.corr(method="pearson")
+    
+    fig, axis = plt.subplots(figsize=(10, 10))
+    
+    sns.heatmap(
+        cor,
+        annot=True,
+        ax=axis,
+        mask=np.triu(cor),
+        fmt=".2f",
+        cmap="coolwarm_r",
+        vmin=-1,
+        vmax=1
+    )
+    
+    st.pyplot(fig)
+                
 
 
 
