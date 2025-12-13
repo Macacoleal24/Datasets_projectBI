@@ -22,7 +22,7 @@ def load_data():
 
 df = load_data()
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["Documentación General","EDA","Metodología", "Modelo de ML", "Conclusión"])
+tab1, tab2, tab3, tab4 = st.tabs(["Documentación General","EDA", "Modelo de ML", "Conclusión"])
 
 with  tab1:
     st.subheader("Documentación General del proyecto")
@@ -257,24 +257,22 @@ with tab2:
     st.plotly_chart(fig, use_container_width=True)
     #------------------
     features = df.select_dtypes(include=["int64", "float64"])
-
-    fig = px.histogram(
-        features.melt(var_name="variable", value_name="value"),
-        x="value",
-        facet_col="variable",
-        facet_col_wrap=4,
-        nbins=30,
-        color="variable",
-        opacity=0.7
+    cor = features.corr(method="pearson")
+    
+    fig, axis = plt.subplots(figsize=(10, 10))
+    
+    sns.heatmap(
+        cor,
+        annot=True,
+        ax=axis,
+        mask=np.triu(cor),
+        fmt=".2f",
+        cmap="coolwarm_r",
+        vmin=-1,
+        vmax=1
     )
     
-    fig.update_layout(
-        height=900,
-        showlegend=False,
-        title="Distribución de Variables Numéricas"
-    )
-    
-    st.plotly_chart(fig, use_container_width=True)
+    st.pyplot(fig)
     #---------
     
 
