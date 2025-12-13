@@ -128,7 +128,7 @@ with tab2:
         - time_signature
         - lyrics
 
-    ## No se encontraron valores nulos en las variables numéricas, por lo que no se requirió imputación.""")
+    ** No se encontraron valores nulos en las variables numéricas, por lo que no se requirió imputación. ** """)
 
     n = st.slider("Selecciona la cantidad de artistas", 5, 50, 15)
 
