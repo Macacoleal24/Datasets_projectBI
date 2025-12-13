@@ -129,6 +129,8 @@ with tab2:
         - lyrics
 
     No se encontraron valores nulos en las variables numéricas, por lo que no se requirió imputación.""")
+
+    top_artists = df["artist_name"].value_counts()
     
     fig, ax = plt.subplots(figsize=(15,6))
     sns.barplot(
