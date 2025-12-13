@@ -95,6 +95,8 @@ Espera
 
 with  tab1:
     st.subheader("EDA(Exploratory Data Analysis)")
+    st.markdown("""#Datos""")
+    st.dataframe(df)
     
 
 
