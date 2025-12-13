@@ -93,33 +93,31 @@ Espera
 ## Dataset utilizado
 [Dataset utilizado para el proyecto](https://www.kaggle.com/datasets/zinasakr/40k-songs-with-audio-features-and-lyrics) **Autor: Zina Sakr**""")
 
-with  tab2:
-    st.subheader("EDA(Exploratory Data Analysis)")
-    st.markdown("""Dataset crudo para realizar insights""")
+with tab2:
+    st.subheader("EDA (Exploratory Data Analysis)")
+    st.markdown("Dataset crudo para realizar insights")
     st.dataframe(df)
     st.metric("Número de filas", df.shape[0])
     st.metric("Número de columnas", df.shape[1])
 
-    st.subheader("Visualización: Scatter Matrix (Plotly)")
-    columnas = st.multiselect(
-        "Selecciona columnas para el scatter matrix",
-        df.select_dtypes(include=["int64", "float64"]).columns
-    )
-    if len(columnas) > 1:
-        import plotly.express as px
+    columnas = st.multiselect("Selecciona columnas para el pairplot", df.columns)
 
+    columnas_validas = []
+    for col in columnas:
+        if pd.api.types.is_numeric_dtype(df[col]):
+            columnas_validas.append(col)
+
+    if len(columnas_validas) > 1:
         fig = px.scatter_matrix(
-            df[columnas],
-            dimensions=columnas,
-            color="cluster",
+            df[columnas_validas],
+            dimensions=columnas_validas,
+            title="Pairplot con Plotly",
             opacity=0.7
         )
-        fig.update_traces(diagonal_visible=True)
-
         st.plotly_chart(fig, use_container_width=True)
-
     else:
-        st.info("Selecciona al menos dos columnas para generar la matriz.")
+        st.info("Selecciona al menos dos columnas numéricas.")
+
     
     st.markdown("""# Columnas usadas para el analisis de los datos:
     * energy
