@@ -65,7 +65,6 @@ Espera
 3. README.txt
 
 ## Dataset utilizado
-[Dataset utilizado para el proyecto](https://www.kaggle.com/datasets/zinasakr/40k-songs-with-audio-features-and-lyrics)
-\n **Autor: Zina Sakr**
+[Dataset utilizado para el proyecto](https://www.kaggle.com/datasets/zinasakr/40k-songs-with-audio-features-and-lyrics) **Autor: Zina Sakr**
 
 
