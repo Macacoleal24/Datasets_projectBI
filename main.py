@@ -269,7 +269,91 @@ with tab2:
     st.pyplot(fig)
 
 with tab3:
-    st.subheader("Modelos de Machine Learning utilizados")
+    st.subheader("Modelos de Machine Learning (Clustering)")
+    st.markdown("En esta sección aplicamos algoritmos no supervisados para agrupar canciones similares.")
+
+    # 1. Selección de Variables
+    st.markdown("### 1. Selección de Características")
+    # Filtramos solo columnas numéricas útiles para clustering
+    numeric_cols = ['artist_popularity', 'acousticness', 'danceability', 'energy', 
+                    'instrumentalness', 'liveness', 'loudness', 'speechiness', 
+                    'tempo', 'valence', 'duration_ms']
+    
+    features_selected = st.multiselect(
+        "Selecciona las variables para el clustering:", 
+        options=numeric_cols,
+        default=['danceability', 'energy', 'valence', 'tempo'] # Selección por defecto
+    )
+
+    if len(features_selected) < 2:
+        st.warning("Por favor selecciona al menos 2 variables para continuar.")
+    else:
+        # Preparación de datos (Subset y Escalado)
+        X = df[features_selected]
+        scaler = StandardScaler()
+        X_scaled = scaler.fit_transform(X)
+
+        # 2. Configuración del Modelo
+        st.markdown("### 2. Configuración del Modelo")
+        algorithm = st.radio("Selecciona el algoritmo:", ["K-Means", "DBSCAN"], horizontal=True)
+
+        # Variables para guardar resultados
+        labels = None
+        model = None
+
+        col_params, col_plot = st.columns([1, 3])
+
+        with col_params:
+            if algorithm == "K-Means":
+                k = st.slider("Número de Clusters (k)", min_value=2, max_value=10, value=4)
+                if st.button("Ejecutar K-Means"):
+                    model = KMeans(n_clusters=k, random_state=42)
+                    model.fit(X_scaled)
+                    labels = model.labels_
+            
+            elif algorithm == "DBSCAN":
+                eps = st.slider("Epsilon (Distancia)", min_value=0.1, max_value=5.0, value=0.5, step=0.1)
+                min_samples = st.slider("Min Samples", min_value=2, max_value=20, value=5)
+                if st.button("Ejecutar DBSCAN"):
+                    model = DBSCAN(eps=eps, min_samples=min_samples)
+                    model.fit(X_scaled)
+                    labels = model.labels_
+
+        # 3. Visualización y Resultados
+        with col_plot:
+            if labels is not None:
+                # Añadimos los clusters al dataframe original para visualizar
+                df_viz = df.copy()
+                df_viz['Cluster'] = labels.astype(str) # Convertir a string para que plotly use colores discretos
+
+                # Reducción de dimensionalidad con PCA para graficar en 2D
+                # (Ya que tenemos muchas variables, las "aplastamos" a 2 dimensiones para verlas)
+                pca = PCA(n_components=2)
+                components = pca.fit_transform(X_scaled)
+                
+                df_viz['PCA1'] = components[:, 0]
+                df_viz['PCA2'] = components[:, 1]
+
+                st.success(f"Modelo ejecutado. Clusters encontrados: {len(set(labels))}")
+
+                # Gráfico de dispersión
+                fig_cluster = px.scatter(
+                    df_viz, 
+                    x='PCA1', 
+                    y='PCA2', 
+                    color='Cluster',
+                    hover_data=['artist_name', 'song_name'] + features_selected,
+                    title=f"Resultados de {algorithm} (Visualización PCA)",
+                    color_discrete_sequence=px.colors.qualitative.Bold
+                )
+                st.plotly_chart(fig_cluster, use_container_width=True)
+                
+                # Explicación breve si sale DBSCAN con ruido
+                if algorithm == "DBSCAN" and "-1" in df_viz['Cluster'].values:
+                    st.info("Nota: En DBSCAN, el cluster '-1' representa 'Ruido' (puntos que no encajan en ningún grupo denso).")
+
+            else:
+                st.info("Configura los parámetros a la izquierda y presiona 'Ejecutar'.")
 
 
 with tab4:
