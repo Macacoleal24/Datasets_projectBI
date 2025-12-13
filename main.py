@@ -127,7 +127,22 @@ with tab2:
         - mode
         - time_signature
         - lyrics
-    """)
+
+    No se encontraron valores nulos en las variables numéricas, por lo que no se requirió imputación.""")
+    
+    fig, ax = plt.subplots(figsize=(15,6))
+    sns.barplot(
+        x=top_artists.values,
+        y=top_artists.index,
+        palette="viridis",
+        ax=ax
+    )
+    ax.set_title("Top Artists with More Songs")
+    ax.set_xlabel("# of Songs")
+    ax.set_ylabel("Artist")
+    ax.spines[['top', 'left', 'right', 'bottom']].set_visible(False)
+    ax.tick_params(axis='both', length=0)
+    st.pyplot(fig)
 
 
 
