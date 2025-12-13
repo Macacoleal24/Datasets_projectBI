@@ -282,27 +282,29 @@ with tab2:
 
 with tab3:
 
+    st.title("Clustering")
+
+    # --- 1. Preprocesamiento ---
     def run_clustering(df):
         features = df.select_dtypes(include=["int64", "float64"])
-
         scaler = StandardScaler()
         scaled_data = scaler.fit_transform(features)
 
+        # PCA a 2 componentes
         pca = PCA(n_components=2)
         pca_data = pca.fit_transform(scaled_data)
 
         return pca_data
 
+    # Ejecutar PCA
     pca_data = run_clustering(df)
     df_pca = pd.DataFrame(pca_data, columns=["PC1", "PC2"])
 
+    # --- 2. Modelos disponibles ---
     opciones_modelos = ["KMeans", "DBSCAN", "HDBSCAN"]
+    modelo_seleccionado = st.selectbox("Selecciona un algoritmo de clustering", opciones_modelos)
 
-    modelo_seleccionado = st.selectbox(
-        "Selecciona un algoritmo de clustering",
-        opciones_modelos
-    )
-
+    # --- 3. Crear el modelo según selección ---
     def crear_modelo(nombre):
         if nombre == "KMeans":
             return KMeans(n_clusters=7, random_state=42)
@@ -311,13 +313,15 @@ with tab3:
             return DBSCAN(eps=0.5, min_samples=10)
 
         if nombre == "HDBSCAN":
-            return hdbscan.HDBSCAN(min_cluster_size=15)
+            return hdbscan.HDBSCAN()
 
     modelo = crear_modelo(modelo_seleccionado)
 
-    clusters = modelo.fit_predict(pca_data)
+    # --- 4. Fit-predict ---
+    clusters = modelo.fit_predict(df_pca)
     df_pca["cluster"] = clusters
-    
+
+    # --- 5. Graficar con Plotly ---
     fig = px.scatter(
         df_pca,
         x="PC1",
@@ -329,6 +333,7 @@ with tab3:
     )
 
     st.plotly_chart(fig, use_container_width=True)
+
 
 
 
