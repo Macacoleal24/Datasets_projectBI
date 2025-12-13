@@ -6,7 +6,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.cluster import (KMeans,  DBSCAN)
 
-
 st.set_page_config(
     page_title="Spotify Dashboard Analysis",
     page_icon="📊",
@@ -275,6 +274,13 @@ with tab3:
 
 with tab4:
     st.subheader("Conclusiones")
+    st.markdown("Durante la realización de este proyecto se aplicó una metodología de Ciencia de Datos para analizar un dataset de canciones utilizando variables acústicas y de popularidad de los artistas. Se realizó un proceso de limpieza, normalización de datos y análisis exploratorio, seguido de la aplicación de técnicas de aprendizaje no supervisado para identificar patrones musicales.
+
+Mediante el uso de KMeans y DBSCAN, se identificaron clusters de canciones con perfiles acústicos diferenciados, representando distintos estilos musicales como canciones energéticas y bailables, canciones tranquilas y ruidosas, y canciones con características intermedias.
+
+Los clusters obtenidos pueden ser utilizados como una herramienta de segmentación musical, permitiendo aplicaciones prácticas como la creación automática de playlists, recomendaciones personalizadas y análisis de preferencias musicales sin depender de etiquetas predefinidas como los géneros.
+
+Una de las principales limitaciones del estudio es que los clusters se basan exclusivamente en características acústicas y no consideran el contexto cultural o subjetivo del género musical. Además, el número de clusters fue seleccionado mediante métodos heurísticos como Elbow y Silhouette.")
 
 
 
