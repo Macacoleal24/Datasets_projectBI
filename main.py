@@ -8,7 +8,7 @@ st.set_page_config(
     page_icon="📊",
     layout="wide"
 )
-st.image("https://posgrados-panamericana.up.edu.mx/hs-fs/hubfs/logo%20posgrados%20con%20espacio.png?width=343&name=logo%20posgrados%20con%20espacio.png")
+st.image("https://posgrados-panamericana.up.edu.mx/hs-fs/hubfs/logo%20posgrados%20con%20espacio.png?width=343&name=logo%20posgrados%20con%20espacio.png",width=100)
 st.title("📊 Spotify Dashboard Analysis")
 st.markdown("Proyecto final - Inteligencia de Negocio y Soluciones de Ciencia de Datos – Universidad Panamericana CDMX")
 
