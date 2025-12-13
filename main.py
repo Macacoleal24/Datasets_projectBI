@@ -99,7 +99,12 @@ with tab2:
     st.dataframe(df)
     st.metric("Número de filas", df.shape[0])
     st.metric("Número de columnas", df.shape[1])
-
+    df = df.rename(columns={"new_artist_popularity": "artist_popularity"})
+    df["artist_popularity"] = df["artist_popularity"] * 100
+    df["genre"] = df["genres"].str.split(";").str[0].str.strip()
+    df.drop(columns="genres", inplace=True)
+    df["duration_ms"] = df["duration_ms"] / 60000
+    
     columnas = st.multiselect("Selecciona columnas para el pairplot", df.columns)
     if len(columnas) > 1:
         fig = sns.pairplot(df[columnas], corner=True)
