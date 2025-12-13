@@ -102,7 +102,7 @@ with tab2:
 
     columnas = st.multiselect("Selecciona columnas para el pairplot", df.columns)
     if len(columnas) > 1:
-    fig = sns.pairplot(df[columnas])
+    fig = sns.pairplot(df[columnas], corner=True, pallet="RdBd")
     st.pyplot(fig)
     else:
     st.info("Selecciona al menos dos columnas.")
