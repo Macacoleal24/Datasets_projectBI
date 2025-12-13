@@ -130,7 +130,7 @@ with tab2:
 
     No se encontraron valores nulos en las variables numéricas, por lo que no se requirió imputación.""")
 
-    top_artists = df["artist_name"].value_counts()
+    top_artists = df["artist_name"].value_counts().head(15)
     
     fig, ax = plt.subplots(figsize=(15,6))
     sns.barplot(
