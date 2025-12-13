@@ -93,7 +93,7 @@ Espera
 ## Dataset utilizado
 [Dataset utilizado para el proyecto](https://www.kaggle.com/datasets/zinasakr/40k-songs-with-audio-features-and-lyrics) **Autor: Zina Sakr**""")
 
-with  tab1:
+with  tab2:
     st.subheader("EDA(Exploratory Data Analysis)")
     st.markdown("""#Datos""")
     st.dataframe(df)
