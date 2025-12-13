@@ -97,8 +97,8 @@ with  tab2:
     st.subheader("EDA(Exploratory Data Analysis)")
     st.markdown("""Dataset crudo para realizar insights""")
     st.dataframe(df)
-    df.info()
-    df.describe()
+    st.metric("Número de filas", df.shape[0])
+    st.metric("Número de columnas", df.shape[1])
 
 
 
