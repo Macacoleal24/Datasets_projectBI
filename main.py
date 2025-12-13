@@ -170,21 +170,42 @@ with tab2:
     
     st.plotly_chart(fig, use_container_width=True)
     # ---------------}
-    cols = ["energy", "new_artist_popularity"]
-    df_clean = df.dropna(subset=cols)
-    df_clean = df_clean.astype({"energy": float, "new_artist_popularity": float})
-    
-    fig = px.scatter(
-        df_clean,
+    df_clean = df.dropna(subset=["energy", "new_artist_popularity"])
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.scatterplot(
+        data=df_clean,
         x="energy",
-        y="artist_popularity",
-        title="Artist Popularity vs Energy",
-        color_discrete_sequence=["red"],
-        opacity=0.7
+        y="new_artist_popularity",
+        color="red",
+        ax=ax
     )
     
-    fig.show()
-        
+    ax.set_title("Artist Popularity vs Energy")
+    ax.set_xlabel("Energy")
+    ax.set_ylabel("Artist Popularity")
+    
+    st.pyplot(fig)
+    # ---------------}
+    top_genres = df["genre"].value_counts().head(15)
+
+    fig = px.bar(
+        x=top_genres.index,
+        y=top_genres.values,
+        labels={"x": "Genre", "y": "Frequency"},
+        title="Most Frequent Genres",
+        color=top_genres.values,
+        color_continuous_scale="Rocket"
+    )
+    
+    fig.update_layout(
+        xaxis_tickangle=45,
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)'
+    )
+    
+    st.plotly_chart(fig, use_container_width=True)
+            
 
 
 
