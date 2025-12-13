@@ -130,22 +130,27 @@ with tab2:
 
     ## No se encontraron valores nulos en las variables numéricas, por lo que no se requirió imputación.""")
 
-    top_artists = df["artist_name"].value_counts().head(15)
+    n = st.slider("Selecciona la cantidad de artistas", 5, 50, 15)
+
+    top_artists = df["artist_name"].value_counts().head(n).reset_index()
+    top_artists.columns = ["artist_name", "song_count"]
     
-    fig, ax = plt.subplots(figsize=(15,6))
-    sns.barplot(
-        x=top_artists.values,
-        y=top_artists.index,
-        palette="viridis",
-        ax=ax
+    fig = px.bar(
+        top_artists,
+        x="song_count",
+        y="artist_name",
+        orientation="h",
+        color="song_count",
+        color_continuous_scale="Viridis",
+        title=f"Top {n} Artists With Most Songs"
     )
-    ax.set_title("Top Artistas con más canciones")
-    ax.set_xlabel("# canciones")
-    ax.set_ylabel("Artista")
-    ax.spines[['top', 'left', 'right', 'bottom']].set_visible(False)
-    ax.tick_params(axis='both', length=0)
-    st.pyplot(fig)
     
+    fig.update_layout(
+        yaxis=dict(categoryorder='total ascending'),
+        height=600
+    )
+    
+    st.plotly_chart(fig, use_container_width=True)
 
 
 
