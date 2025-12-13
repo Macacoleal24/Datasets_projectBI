@@ -1,4 +1,20 @@
 import streamlit as st
+import pandas as pd
+import numpy as np
+import plotly.express as px  
+
+st.set_page_config(
+    page_title="Spotify Dashboard Analysis",
+    page_icon="📊",
+    layout="wide"
+)
+
+st.title("📊 Spotify Dashboard Analysis")
+st.markdown("Proyecto final - Inteligencia de Negocio y Soluciones de Ciencia de Datos – Universidad Panamericana CDMX")
+
+@st.cache_data
+def load_data():
+     return pd.DataFrame(data)
 
 st.markdown("""<img src="https://posgrados-panamericana.up.edu.mx/hs-fs/hubfs/logo%20posgrados%20con%20espacio.png?width=343&name=logo%20posgrados%20con%20espacio.png" width="150" >
 
