@@ -128,7 +128,7 @@ with tab2:
         - time_signature
         - lyrics
 
-    No se encontraron valores nulos en las variables numéricas, por lo que no se requirió imputación.""")
+    ## No se encontraron valores nulos en las variables numéricas, por lo que no se requirió imputación.""")
 
     top_artists = df["artist_name"].value_counts().head(15)
     
@@ -139,12 +139,13 @@ with tab2:
         palette="viridis",
         ax=ax
     )
-    ax.set_title("Top Artists with More Songs")
-    ax.set_xlabel("# of Songs")
-    ax.set_ylabel("Artist")
+    ax.set_title("Top Artistas con más canciones")
+    ax.set_xlabel("# canciones")
+    ax.set_ylabel("Artista")
     ax.spines[['top', 'left', 'right', 'bottom']].set_visible(False)
     ax.tick_params(axis='both', length=0)
     st.pyplot(fig)
+    
 
 
 
