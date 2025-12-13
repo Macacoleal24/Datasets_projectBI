@@ -105,13 +105,27 @@ with tab2:
         fig = sns.pairplot(df[columnas], corner=True)
         st.pyplot(fig.figure)
     else:
-        st.info("Selecciona al menos dos columnas.")
+        st.info("Selecciona al menos dos columnas numericos.")
 
-    st.markdown("""# Columnas usadas para el analisis de los datos:
-    * energy
-    * valence
-    * danceability
-    * loudness
+    st.markdown("""# Columnas usadas para el analisis de los datos
+    * Variables numéricas relevantes: 
+        - artist_popularity
+        - acousticness
+        - danceability
+        - energy
+        - instrumentalness
+        - liveness
+        - loudness
+        - speechiness
+        - tempo
+        - valence
+        - duration_ms
+        
+    * Variables que se eliminaron
+        - key
+        - mode
+        - time_signature
+        - lyrics
     """)
 
 
