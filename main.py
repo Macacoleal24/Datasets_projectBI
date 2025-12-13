@@ -99,10 +99,27 @@ with  tab2:
     st.dataframe(df)
     st.metric("Número de filas", df.shape[0])
     st.metric("Número de columnas", df.shape[1])
-    st.title("Pairplot del Dataset")
-    numericas = df.select_dtypes(include=["int64", "float64"])
-    fig = sns.pairplot(numericas)
-    st.pyplot(fig)
+
+    st.subheader("Visualización: Scatter Matrix (Plotly)")
+    columnas = st.multiselect(
+        "Selecciona columnas para el scatter matrix",
+        df.select_dtypes(include=["int64", "float64"]).columns
+    )
+    if len(columnas) > 1:
+        import plotly.express as px
+
+        fig = px.scatter_matrix(
+            df[columnas],
+            dimensions=columnas,
+            color="cluster",
+            opacity=0.7
+        )
+        fig.update_traces(diagonal_visible=True)
+
+        st.plotly_chart(fig, use_container_width=True)
+
+    else:
+        st.info("Selecciona al menos dos columnas para generar la matriz.")
     
     st.markdown("""# Columnas usadas para el analisis de los datos:
     * energy
