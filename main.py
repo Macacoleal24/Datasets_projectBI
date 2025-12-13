@@ -170,7 +170,7 @@ with tab2:
     
     st.plotly_chart(fig, use_container_width=True)
     # ---------------}
-    cols_needed = ["energy", "artist_popularity"]
+    cols_needed = ["energy", "new_artist_popularity"]
     cols_exist = [c for c in cols_needed if c in df.columns]
     
     missing = set(cols_needed) - set(cols_exist)
