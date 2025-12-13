@@ -14,7 +14,11 @@ st.markdown("Proyecto final - Inteligencia de Negocio y Soluciones de Ciencia de
 
 @st.cache_data
 def load_data():
-     return pd.DataFrame(data)
+    url = "https://raw.githubusercontent.com/Macacoleal24/Datasets_projectBI/refs/heads/main/final_dataset_V4.csv"
+    df = pd.read_csv(url)
+    return df
+
+df = load_data()
 
 st.markdown("""<img src="https://posgrados-panamericana.up.edu.mx/hs-fs/hubfs/logo%20posgrados%20con%20espacio.png?width=343&name=logo%20posgrados%20con%20espacio.png" width="150" >
 
