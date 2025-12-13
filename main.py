@@ -200,7 +200,7 @@ with tab2:
         labels={"x": "Genre", "y": "Frequency"},
         title="Most Frequent Genres",
         color=top_genres.values,
-        color_continuous_scale="Rocket"
+        color_continuous_scale="Plasma"
     )
     
     fig.update_layout(
