@@ -210,6 +210,26 @@ with tab2:
     )
     
     st.plotly_chart(fig, use_container_width=True)
+    #-----------------
+    top_genres = df["genre"].value_counts().head(10)
+    df_top = df[df["genre"].isin(top_genres.index)]
+    
+    fig = px.box(
+        df_top,
+        x="genre",
+        y="danceability",
+        color="genre",
+        title="Danceability Distribution by Genre",
+    )
+    
+    fig.update_layout(
+        xaxis_title="Genre",
+        yaxis_title="Danceability",
+        showlegend=False,
+        height=500,
+    )
+    
+    st.plotly_chart(fig, use_container_width=True)
             
 
 
